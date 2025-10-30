@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import type { KanbanViewProps } from '../../types/kanban';
 import KanbanColumn from './KanbanColumn';
 
-export default function KanbanBoard({ columns, tasks }: KanbanViewProps) {
+export default function KanbanBoard({ columns, tasks, onTaskMove, onTaskCreate, onTaskDelete, onTaskUpdate }: KanbanViewProps) {
   const columnTasks = useMemo(() => columns.map(c => ({
     column: c, tasks: c.taskIds.map(id => tasks[id]).filter(Boolean)
   })), [columns, tasks]);

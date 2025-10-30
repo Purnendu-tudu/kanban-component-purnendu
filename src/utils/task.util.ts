@@ -1,5 +1,20 @@
 // task.util.ts
 
+
+/**
+ * 
+ * @param date 
+ * @returns 
+ */
+
+
+export const formatDate = (date:Date) => {
+    return date.toLocaleDateString('en-Us',{
+        month:'short',
+        day: 'numeric'
+    })
+}
+
 /**
  * Check if a task is overdue
  * @param dueDate -Due date of the task

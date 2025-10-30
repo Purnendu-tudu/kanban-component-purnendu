@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "storybook:css":"tailwindcss -w -i ./src/index.css -o ./src/styles/globals.css",
+    "storybook:css": "tailwindcss -w -i ./src/index.css -o ./src/styles/globals.css",
     "storybook": "concurrently 'npm run storybook:css' 'storybook dev -p 6006'",
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -13,6 +13,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
     "@tailwindcss/vite": "^4.1.16",
     "concurrently": "^9.2.1",
     "react": "^19.1.1",
