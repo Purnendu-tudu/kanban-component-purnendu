@@ -3,22 +3,30 @@ import type { Meta, StoryObj } from '@storybook/react';
 import KanbanBoard from './KanbanBoard';
 import { sampleColumns, sampleTasks } from '../../data/samples';
 
+import useKanbanBoard from '../../hooks/useKanbanBoard';
+
 const meta: Meta<typeof KanbanBoard> = { title: 'Kanban/KanbanBoard', component: KanbanBoard, parameters:{ layout:'fullscreen' } };
 export default meta;
 type Story = StoryObj<typeof KanbanBoard>;
 const noop = () => {};
 
 export const Default: Story = {
-  render: () => (
-    <KanbanBoard
+
+  
+
+  render: () => {
+
+    const { onMoveTask } = useKanbanBoard(sampleTasks, sampleColumns)
+
+    return (<KanbanBoard
       columns={sampleColumns}
       tasks={sampleTasks}
-      onTaskMove={noop}
+      onTaskMove={onMoveTask}
       onTaskCreate={noop}
       onTaskUpdate={noop}
       onTaskDelete={noop}
-    />
-  )
+    />)
+  }
 };
 
 export const Empty: Story = {

@@ -3,21 +3,41 @@
 import { useMemo } from 'react';
 import type { KanbanViewProps } from '../../types/kanban';
 import KanbanColumn from './KanbanColumn';
+import { useDragAndDrop } from '../../hooks/useDragAndDrop';
+
+
 
 export default function KanbanBoard({ columns, tasks, onTaskMove, onTaskCreate, onTaskDelete, onTaskUpdate }: KanbanViewProps) {
+
+
+
   const columnTasks = useMemo(() => columns.map(c => ({
     column: c, tasks: c.taskIds.map(id => tasks[id]).filter(Boolean)
   })), [columns, tasks]);
 
+
+  const { isDragging, dropTargetId, dragOverIndex , handelDragStart ,handelDragOver, handelDragEnd } = useDragAndDrop()
+
   return (
-    <div className="w-full overflow-x-auto">
-      <div className="flex gap-4 px-4 py-3 snap-x snap-mandatory">
-        {columnTasks.map(({ column, tasks }) => (
-          <div key={column.id} className="snap-start">
-            <KanbanColumn column={column} tasks={tasks} />
-          </div>
-        ))}
+      <div className="w-full overflow-x-auto">
+        <div className="flex gap-4 px-4 py-3 snap-x snap-mandatory">
+          {columnTasks.map(({ column, tasks }) => (
+            <div key={column.id} className="snap-start">
+              <KanbanColumn 
+              column={column} 
+              tasks={tasks} 
+              isDragging={isDragging} 
+              handelDragStart={handelDragStart} 
+              dropTargetId={dropTargetId} 
+              dragOverIndex={dragOverIndex} 
+              handelDragOver={handelDragOver} 
+              handelDragEnd={handelDragEnd} 
+              onTaskMove={onTaskMove}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    
   );
 }

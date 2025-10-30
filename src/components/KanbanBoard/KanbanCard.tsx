@@ -3,12 +3,20 @@
 import type { KanbanTask } from "../../types/kanban";
 import { getInitials, getPriorityColor, isOverdue, formatDate } from "../../utils/task.util";
 
-import { useDragAndDrop } from "../../hooks/useDragAndDrop";
 
 
-export default function KanbanCard({ task }: { task: KanbanTask }) {
+interface KanbanCardProp {
+    task: KanbanTask;
+    isDragging: boolean;
+    isDragover?: boolean;
+    onDragStart: (id: string) => void;
+    onDragEnd: () => void;
+}
 
-    const { handelDragStart } = useDragAndDrop()
+
+export default function KanbanCard({ task, isDragging, onDragStart, onDragEnd, isDragover }: KanbanCardProp) {
+
+    // const { isDragging, handelDragStart , handelDragEnd } = useDragAndDrop()
 
 
 
@@ -19,12 +27,32 @@ export default function KanbanCard({ task }: { task: KanbanTask }) {
             draggable="true"
             onDragStart={(e) => {
                 e.stopPropagation();
-                handelDragStart(task.id)
+                onDragStart(task.id)
 
-                if (onDragStart) onDragStart(task.id);
+
             }}
-            className="space-y-2 bg-white border border-neutral-200 rounded-lg p-3 shadow-sm 
-                        hover:shadow-md transition-shadow cursor-grab active:cursor-grabbing">
+
+            onDragEnd={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onDragEnd()
+            }}
+
+            onDrop={(e) => {
+                e.preventDefault()
+                
+                onDragEnd()
+            }}
+
+
+
+            className={`space-y-2 ${isDragover
+                    ? "border-green-400"
+                    : isDragging
+                        ? "border-blue-400"
+                        : "border-gray-200"
+                } bg-white border  rounded-lg p-3 shadow-sm 
+                        hover:shadow-md transition-shadow cursor-grab active:cursor-grabbing`}>
 
 
             <div className="flex items-start justify-between mb-2">
