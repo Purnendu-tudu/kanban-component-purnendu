@@ -10,7 +10,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_16b4604533645fc"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -34,6 +35,7 @@
     "@vitest/browser-playwright": "^4.0.4",
     "@vitest/coverage-v8": "^4.0.4",
     "autoprefixer": "^10.4.21",
+    "chromatic": "^13.3.2",
     "eslint": "^9.36.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.22",

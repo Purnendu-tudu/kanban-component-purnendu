@@ -1,6 +1,6 @@
 # Kanban Board Component
 ##  Live Storybook
-[Your Deployed Storybook URL]
+[See Here](https://www.chromatic.com/component?appId=69037ee7148de2897e733e91&csfId=kanban-kanbanboard--default&buildNumber=2&k=69037fb1bdb48643deced477-1200px-interactive-true&h=7&b=-3)
 ##  Installation
 \`\`\`bash
 npm install
